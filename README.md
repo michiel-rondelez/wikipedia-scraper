@@ -1,7 +1,7 @@
 # Wikipedia Scraper
 
 Consolidates political leader data by:
-- Retrieving countries and leaders from the `country-leaders` API
+- Retrieving countries and leaders from the `country-leaders` API (this is the documentation of the api endpoints: https://country-leaders.onrender.com/docs)
 - Scraping the first paragraph from each leader’s Wikipedia page
 - Cleaning and saving the results
 
