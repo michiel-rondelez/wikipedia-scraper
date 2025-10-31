@@ -33,6 +33,7 @@ flowchart TD
   E --> F[leaders_by_country]
   D --> G[add_wikipedia_paragraphs]
   G --> H[save_to_json]
+  G --> I[save_to_csv]
 ```
 
 
