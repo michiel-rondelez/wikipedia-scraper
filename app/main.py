@@ -2,12 +2,18 @@ from api_client import CountryLeadersAPI
 from wikipedia_scraper import WikipediaScraper
 from leaders_manager import LeadersManager
 import time
+import os
+import argparse
 
 def main():
     """Main execution function."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--workers", type=int, default=int(os.environ.get("WIKI_SCRAPER_WORKERS", "8")), help="Max concurrent workers")
+    args = parser.parse_args()
+
     api = CountryLeadersAPI()
     scraper = WikipediaScraper()
-    manager = LeadersManager(api, scraper)
+    manager = LeadersManager(api, scraper, max_workers=args.workers)
 
     #start timer
     start_time_leaders = time.time()
