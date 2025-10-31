@@ -23,17 +23,19 @@ Learning objectives:
 - `app/leaders_manager.py`: Orchestrates API calls and Wikipedia scraping
 - `app/main.py`: main
 
-Flow (high‑level):
+### Flow (high‑level)
 ```mermaid
 flowchart TD
   A[main.py] --> B[CountryLeadersAPI]
   A --> C[WikipediaScraper]
   A --> D[LeadersManager]
-  D --> E[get_all_leaders (threads)]
+  D --> E[get_all_leaders]
   E --> F[leaders_by_country]
-  D --> G[add_wikipedia_paragraphs (threads + pooled sessions)]
+  D --> G[add_wikipedia_paragraphs]
   G --> H[save_to_json]
 ```
+
+
 
 ## Installation
 ```bash
