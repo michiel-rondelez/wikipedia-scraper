@@ -20,7 +20,7 @@ class WikipediaScraper:
         """Fetch the first relevant paragraph from Wikipedia."""
         r = session.get(url, headers=self.headers)
         if r.status_code == 403:
-            print(f"⚠️ Forbidden: {url}")
+            print(f"Error - Forbidden: {url}")
             return ""
         r.raise_for_status()
 
