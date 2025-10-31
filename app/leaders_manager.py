@@ -1,4 +1,6 @@
 import json
+import csv
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from api_client import CountryLeadersAPI
 from wikipedia_scraper import WikipediaScraper
 
@@ -6,9 +8,10 @@ from wikipedia_scraper import WikipediaScraper
 class LeadersManager:
     """Fetching leaders and adding wikipedia paragraphs."""
 
-    def __init__(self, api: CountryLeadersAPI, scraper: WikipediaScraper):
+    def __init__(self, api: CountryLeadersAPI, scraper: WikipediaScraper, max_workers: int = 8):
         self.api = api
         self.scraper = scraper
+        self.max_workers = max_workers
 
     def get_all_leaders(self) -> dict:
         """Fetch leaders per country and ensure last_name completeness."""
@@ -41,3 +44,12 @@ class LeadersManager:
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
         print(f"Saved to {filename}")
+
+    def save_to_csv(self, data: dict, filename="leaders_with_paragraphs.csv"):
+        """Save data to a CSV file."""
+        with open(filename, "w", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(["country", "leader_id", "first_name", "last_name", "wikipedia_url", "paragraph"])
+            for country, leaders in data.items():
+                for leader in leaders:
+                    writer.writerow([country, leader["id"], leader["first_name"], leader["last_name"], leader["wikipedia_url"], leader["paragraph"]])

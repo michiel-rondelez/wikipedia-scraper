@@ -33,7 +33,7 @@ def main():
     print("Saving results...")
     print("=" * 50)
     manager.save_to_json(leaders)
-
+    manager.save_to_csv(leaders)
     print("\nProcess completed successfully!")
     print("=" * 50)
     print(f"Time taken to get all leaders: {end_time_leaders - start_time_leaders} seconds")

@@ -66,7 +66,7 @@ Must‑have (MVP):
 - Clear exception handling and a readable README
 
 Nice‑to‑have implemented:
-- CSV export switch alongside JSON
+- CSV export alongside JSON
 
 Nice-to-have future:
 - Async scraping via `aiohttp` for higher concurrency loads
